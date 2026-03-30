@@ -286,7 +286,7 @@ export function useModelEffort(): UseModelEffortReturn {
       if (signal.cancelled) return;
 
       if (sessionInfo?.thinking && !currentSessionThinking) {
-        const level = sessionInfo.thinking.toLowerCase() as EffortLevel;
+        const level = (sessionInfo.thinking || '').toLowerCase() as EffortLevel;
         if (EFFORT_OPTIONS.includes(level)) {
           setSelectedEffort(level);
           try { localStorage.setItem(getEffortKey(currentSession), level); } catch { /* ignore */ }

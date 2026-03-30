@@ -105,7 +105,7 @@ export function GatewayProvider({ children }: { children: ReactNode }) {
             || list.find(s => isTopLevelAgentSessionKey(s.sessionKey || s.key || ''));
           if (clean === '--' && primarySession?.model) clean = normalizeModel(primarySession.model);
           if (!hasThinking && primarySession?.thinking) {
-            setThinking(primarySession.thinking.toLowerCase());
+            setThinking((primarySession.thinking || '').toLowerCase());
           }
         } catch { /* fallback to '--' */ }
       }

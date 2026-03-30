@@ -50,7 +50,7 @@ export function useKeyboardShortcuts(shortcuts: ShortcutConfig[]) {
         : (!e.ctrlKey || shortcut.meta);
       const shiftMatch = shortcut.shift ? e.shiftKey : !e.shiftKey;
       const altMatch = shortcut.alt ? e.altKey : !e.altKey;
-      const keyMatch = e.key.toLowerCase() === shortcut.key.toLowerCase();
+      const keyMatch = shortcut.key && e.key.toLowerCase() === shortcut.key.toLowerCase();
 
       if (metaMatch && ctrlMatch && shiftMatch && altMatch && keyMatch) {
         if (shortcut.preventDefault !== false) {
