@@ -140,6 +140,12 @@ export function useCrons() {
     }
   }, [fetchJobs]);
 
+  // Auto-refresh every 30 seconds to keep cron list in sync
+  useEffect(() => {
+    const interval = setInterval(fetchJobs, 30000);
+    return () => clearInterval(interval);
+  }, [fetchJobs]);
+
   const toggleJob = useCallback(async (id: string, enabled: boolean) => {
     try {
       const res = await fetch(`/api/crons/${encodeURIComponent(id)}/toggle`, {

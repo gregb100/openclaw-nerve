@@ -99,7 +99,7 @@ export function ConnectDialog({
             </div>
           </div>
 
-          <div className="grid gap-4">
+          <form onSubmit={e => { e.preventDefault(); handleConnect(); }} className="grid gap-4">
             <label className="flex flex-col gap-2">
               <span className="text-[0.733rem] font-medium uppercase tracking-[0.2em] text-muted-foreground">
                 WebSocket endpoint
@@ -109,6 +109,7 @@ export function ConnectDialog({
                 onChange={e => setUrl(e.target.value)}
                 spellCheck={false}
                 placeholder="ws://127.0.0.1:18789"
+                autoComplete="username"
                 className="font-mono text-base sm:text-[0.867rem]"
               />
             </label>
@@ -121,14 +122,14 @@ export function ConnectDialog({
                   type="password"
                   value={token}
                   onChange={e => setToken(e.target.value)}
-                  onKeyDown={e => e.key === 'Enter' && handleConnect()}
                   spellCheck={false}
                   placeholder="Paste the token from your gateway config"
+                  autoComplete="current-password"
                   className="font-mono text-base sm:text-[0.867rem]"
                 />
               </label>
             )}
-          </div>
+          </form>
 
           <div className="mt-auto flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="max-w-[34ch] text-xs leading-5 text-muted-foreground">
